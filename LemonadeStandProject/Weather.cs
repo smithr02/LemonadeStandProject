@@ -9,22 +9,28 @@ namespace LemonadeStandProject
     class Weather
     {
         public int temp;
-        public string currentWeather;
-        List<String> weatherConditions = new List<string>();
+        public string condition;
+        List<String> weatherConditions = new List<string>() { "Cloudy", "Clear", "Rainy" };
 
         public Weather()
         {
-
+            
         }
 
-        public void setWeatherForecast()
+        public void setWeather() //method for setting the weather, used seed to create a more random number.
         {
-
+            int seed = DateTime.Now.Millisecond;
+            Random rand = new Random(seed);
+            temp = rand.Next(30, 100);
+            condition = weatherConditions[rand.Next(0, 2)];
         }
 
-        public void actualWeather()
+        public void modifyPredictions()
         {
-
+            int seed = DateTime.Now.Millisecond;
+            Random rand = new Random(seed);
+            temp = rand.Next(temp -5, temp +5);
+            condition = weatherConditions[rand.Next(0, 2)];
         }
     }
 
