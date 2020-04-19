@@ -14,21 +14,19 @@ namespace LemonadeStandProject
 
         public Weather()
         {
-            
+            setWeather();
         }
 
-        public void setWeather() //method for setting the weather, used seed to create a more random number.
+        private void setWeather() //method for setting the weather, used guid to help with random being truly more random.
         {
-            int seed = DateTime.Now.Millisecond;
-            Random rand = new Random(seed);
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
             temp = rand.Next(30, 100);
             condition = weatherConditions[rand.Next(0, 2)];
         }
 
         public void modifyPredictions()
         {
-            int seed = DateTime.Now.Millisecond;
-            Random rand = new Random(seed);
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
             temp = rand.Next(temp -5, temp +5);
             condition = weatherConditions[rand.Next(0, 2)];
         }
