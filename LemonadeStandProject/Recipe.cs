@@ -8,5 +8,6 @@ namespace LemonadeStandProject
 {
     class Recipe
     {
+        public int PricePerCup;
     }
 }
