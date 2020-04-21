@@ -14,7 +14,7 @@ namespace LemonadeStandProject
 
         public Game(Player player, Store store)
         {
-            for (int i = 0; i <NumberOfDays; i++)
+            for (int i = 0; i < NumberOfDays; i++)
             {
                 GameDays.Add(new Day());
             }
@@ -26,8 +26,24 @@ namespace LemonadeStandProject
             //Main Game Loop
             while (currentDay < NumberOfDays)
             {
-
+                GameDays[currentDay].weather.modifyPredictions();
+                currentCondition = GameDays[currentDay].weather.condition;
+                currentTemp = GameDays[currentDay].weather.temp;
+                Console.WriteLine("Today is " + DaysOfWeek[currentDay]);
+                Console.WriteLine("Current weather is " + currentTemp + "F and " + currentCondition);
             }
+
+            if (currentDay + 1 < NumberOfDays)
+            {
+                Console.WriteLine("\n\tThis Weeks Forecast:");
+                for (int i = currentDay + 1; i < NumberOfDays; i++)
+                {
+                    Console.WriteLine("\t" + DaysOfWeek[i] + " " + GameDays[i].weather.temp + "F and " + GameDays[i].weather.condition);
+
+                }
+            }
+            Console.ReadLine();
         }
+        
     }
 }

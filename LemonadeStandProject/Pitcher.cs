@@ -8,5 +8,18 @@ namespace LemonadeStandProject
 {
     class Pitcher
     {
+        public int cupsLeftInPitcher;
+        public static int CupsPerPitcher = 20;
+
+        public Pitcher()
+        {
+            SetFullPitcher();
+        }
+
+        public void SetFullPitcher()
+        {
+            cupsLeftInPitcher = 20;
+        }
     }
 }
+
