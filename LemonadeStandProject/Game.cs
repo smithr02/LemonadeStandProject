@@ -11,6 +11,9 @@ namespace LemonadeStandProject
         List<Day> GameDays = new List<Day>();
         int NumberOfDays = 7;
         string[] DaysOfWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+        Player player = new Player();
+        Store store = new Store();
+        Day day = new Day();
 
         public Game(Player player, Store store)
         {
@@ -31,6 +34,9 @@ namespace LemonadeStandProject
                 currentTemp = GameDays[currentDay].weather.temp;
                 Console.WriteLine("Today is " + DaysOfWeek[currentDay]);
                 Console.WriteLine("Current weather is " + currentTemp + "F and " + currentCondition);
+                
+
+                currentDay++;
             }
 
             if (currentDay + 1 < NumberOfDays)
@@ -42,7 +48,7 @@ namespace LemonadeStandProject
 
                 }
             }
-            Console.ReadLine();
+            
         }
         
     }

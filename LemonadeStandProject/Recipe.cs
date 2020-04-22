@@ -16,7 +16,7 @@ namespace LemonadeStandProject
 
         public Recipe()
         {
-
+            
         }
 
         public void CreatePitcher(Inventory ourInventory) //keeping track of our inventory

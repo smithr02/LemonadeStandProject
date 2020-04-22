@@ -8,7 +8,7 @@ namespace LemonadeStandProject
 {
     class Wallet
     {
-        private double money;
+        public double money;
 
         public double Money
         {

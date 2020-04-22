@@ -10,7 +10,10 @@ namespace LemonadeStandProject
     {
         static void Main(string[] args)
         {
-            Game game = new Game;
+            Player player = new Player();
+            Store store = new Store();
+            Game game = new Game(player, store);
+            
         }
     }
 }

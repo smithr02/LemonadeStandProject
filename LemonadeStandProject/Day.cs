@@ -40,7 +40,7 @@ namespace LemonadeStandProject
         public void SetRecipe(Player player)
         {
             //Call the player object's 'recipe' to make the recipe.
-            //recipe = player.SetRecipe();
+            recipe = player.SetRecipe();
 
 
         }
@@ -52,7 +52,7 @@ namespace LemonadeStandProject
                 if (customer.WillingToPay && recipe.pitcher.cupsLeftInPitcher > 0)
                 {
                     recipe.pitcher.cupsLeftInPitcher--;
-                    player.wallet.Money += Convert.ToDouble(recipe.PricePerCup);
+                    player.wallet.money += Convert.ToDouble(recipe.PricePerCup);
                     count++;
                 }
                 else
