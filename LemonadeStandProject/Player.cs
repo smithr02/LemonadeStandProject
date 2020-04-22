@@ -24,7 +24,6 @@ namespace LemonadeStandProject
         public Recipe SetRecipe()
         {
             recipe.SetRecipe();
-            recipe.CreatePitcher(inventory);
             return recipe;
         }
 

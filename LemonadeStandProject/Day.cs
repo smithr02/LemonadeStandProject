@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace LemonadeStandProject
         List<Customer> customers = new List<Customer>();
         public Weather weather;
         public Recipe recipe;
+        public Pitcher pitcher = new Pitcher();
 
         public Day()
         {
@@ -23,6 +25,7 @@ namespace LemonadeStandProject
             GoToStore(store, player);
             SetRecipe(player);
             AddCustomers();
+            SetupStand(player);
             SellLemonade(player);
 
 
@@ -41,23 +44,26 @@ namespace LemonadeStandProject
         {
             //Call the player object's 'recipe' to make the recipe.
             recipe = player.SetRecipe();
+        }
 
-
+        public void SetupStand(Player player)
+        {
+            pitcher.FillPitcher(recipe, player.inventory);
         }
         public void SellLemonade(Player player)
         {
             int count = 0;
             foreach (Customer customer in customers)
             {
-                if (customer.WillingToPay && recipe.pitcher.cupsLeftInPitcher > 0)
+                if (customer.WillingToPay && pitcher.cupsLeftInPitcher > 0)
                 {
-                    recipe.pitcher.cupsLeftInPitcher--;
+                    pitcher.cupsLeftInPitcher--;
                     player.wallet.money += Convert.ToDouble(recipe.PricePerCup);
                     count++;
                 }
                 else
                 {
-                    recipe.CreatePitcher(player.inventory);
+                    pitcher.FillPitcher(recipe, player.inventory);
                 }
 
             }

@@ -13,6 +13,7 @@ namespace LemonadeStandProject
         string[] DaysOfWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
         Player player = new Player();
         Store store = new Store();
+        Inventory inventory = new Inventory();
         Day day = new Day();
 
         public Game(Player player, Store store)
@@ -34,7 +35,7 @@ namespace LemonadeStandProject
                 currentTemp = GameDays[currentDay].weather.temp;
                 Console.WriteLine("Today is " + DaysOfWeek[currentDay]);
                 Console.WriteLine("Current weather is " + currentTemp + "F and " + currentCondition);
-                
+                GameDays[currentDay].RunDay(store, player);
 
                 currentDay++;
             }

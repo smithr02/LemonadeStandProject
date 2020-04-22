@@ -11,7 +11,6 @@ namespace LemonadeStandProject
         public int numberOfLemons;
         public int numberOfSugarCubes;
         public int numberOfIceCubes;
-        public Pitcher pitcher;
         public int PricePerCup;
 
         public Recipe()
@@ -19,41 +18,11 @@ namespace LemonadeStandProject
             
         }
 
-        public void CreatePitcher(Inventory ourInventory) //keeping track of our inventory
-        {
-
-            if (CanCreatePitcher(ourInventory))
-            {
-                pitcher = new Pitcher();
-                for (int i = 0; i < numberOfLemons; i++)
-                {
-                    ourInventory.lemons.RemoveAt(0);
-                }
-
-                for (int i = 0; i < numberOfIceCubes; i++)
-                {
-                    ourInventory.iceCubes.RemoveAt(0);
-                }
-
-                for (int i = 0; i < numberOfSugarCubes; i++)
-                {
-                    ourInventory.sugarCubes.RemoveAt(0);
-                }
-                for (int i = 0; i < ourInventory.cups.Count; i++)
-                {
-                    ourInventory.cups.RemoveAt(0);
-                }
-
-            }
-            else
-            {
-                Console.WriteLine("Not enough inventory");
-            }
+       
 
 
 
 
-        }
 
         public void SetRecipe()
         {
@@ -72,16 +41,5 @@ namespace LemonadeStandProject
 
         }
 
-        public bool CanCreatePitcher(Inventory EnoughSupplies)
-        {
-            if (numberOfLemons < EnoughSupplies.lemons.Count && numberOfSugarCubes < EnoughSupplies.sugarCubes.Count && numberOfIceCubes < EnoughSupplies.iceCubes.Count && Pitcher.CupsPerPitcher >= EnoughSupplies.cups.Count)
-            {
-                return true;
-            }
-            return false;
-
-
-
-        }
     }
 }
