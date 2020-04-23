@@ -24,7 +24,7 @@ namespace LemonadeStandProject
             condition = weatherConditions[rand.Next(0, 2)];
         }
 
-        public void modifyPredictions()
+        public void modifyPredictions()  // SOLID EXAMPLE- this is single responsibility, where it simply creates a randomly generated condition and does it well.
         {
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             temp = rand.Next(temp -5, temp +5);

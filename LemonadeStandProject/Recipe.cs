@@ -17,13 +17,7 @@ namespace LemonadeStandProject
         {
             
         }
-
        
-
-
-
-
-
         public void SetRecipe()
         {
             Console.WriteLine("How many lemons do you want use?");
