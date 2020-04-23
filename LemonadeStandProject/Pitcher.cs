@@ -22,9 +22,9 @@ namespace LemonadeStandProject
             cupsLeftInPitcher = 20;
         }
 
-        public void FillPitcher(Recipe recipe, Inventory inventory)
+        public bool FillPitcher(Recipe recipe, Inventory inventory)
         {
-            if(CanCreatePitcher(recipe, inventory))
+            if (CanCreatePitcher(recipe, inventory))
             {
                 for (int i = 0; i < recipe.numberOfLemons; i++)
                 {
@@ -46,17 +46,18 @@ namespace LemonadeStandProject
                 }
 
                 SetFullPitcher();
+                return true;
             }
             else
             {
                 Console.WriteLine("You're out of ingredients, time go close the stand and go home");
+                return false;
             }
         }
 
         public bool CanCreatePitcher(Recipe recipe, Inventory inventory)
         {
-            
-            if(recipe.numberOfIceCubes > inventory.iceCubes.Count)
+            if (recipe.numberOfIceCubes > inventory.iceCubes.Count)
             {
                 return false;
             }

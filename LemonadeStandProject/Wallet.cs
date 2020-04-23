@@ -27,5 +27,10 @@ namespace LemonadeStandProject
         {
             money -= transactionAmount;
         }
+
+        public void addMoney(double money)
+        {
+            this.money += money;
+        }
     }
 }

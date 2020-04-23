@@ -15,6 +15,7 @@ namespace LemonadeStandProject
         Store store = new Store();
         Inventory inventory = new Inventory();
         Day day = new Day();
+        double totalProfits = 0;
 
         public Game(Player player, Store store)
         {
@@ -33,22 +34,20 @@ namespace LemonadeStandProject
                 GameDays[currentDay].weather.modifyPredictions();
                 currentCondition = GameDays[currentDay].weather.condition;
                 currentTemp = GameDays[currentDay].weather.temp;
-                Console.WriteLine("Today is " + DaysOfWeek[currentDay]);
-                Console.WriteLine("Current weather is " + currentTemp + "F and " + currentCondition);
-                GameDays[currentDay].RunDay(store, player);
-
                 currentDay++;
             }
 
-            if (currentDay + 1 < NumberOfDays)
+            for(int i=0; i < NumberOfDays; i++)
             {
-                Console.WriteLine("\n\tThis Weeks Forecast:");
-                for (int i = currentDay + 1; i < NumberOfDays; i++)
-                {
-                    Console.WriteLine("\t" + DaysOfWeek[i] + " " + GameDays[i].weather.temp + "F and " + GameDays[i].weather.condition);
-
-                }
+                Console.WriteLine("Current weather is " + GameDays[i].weather.temp + "F and " + GameDays[i].weather.condition);
+                GameDays[i].RunDay(store, player);
+                totalProfits += GameDays[i].profit;
+                Console.WriteLine("Current total profits are " + totalProfits);
+                Console.WriteLine("\n\t Tomorrow's Forecast:");
+                Console.WriteLine("\t" + DaysOfWeek[i+1] + " " + GameDays[i+1].weather.temp + "F and " + GameDays[i+1].weather.condition);
             }
+
+
             
         }
         

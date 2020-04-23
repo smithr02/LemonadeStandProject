@@ -11,7 +11,7 @@ namespace LemonadeStandProject
     {
         public string Name;
         private List<string> PossibleNames = new List<string>() { "Mark", "Jon", "Stehpanie", "Cassie", "Tom", "Jesus", "Sheldon", "Marki", "Sarah" };
-        int PriceWillingToPay = 0;
+        public int PriceWillingToPay = 0;
         public bool WillingToPay = false;
 
         public Customer (Weather weather, Recipe recipe)

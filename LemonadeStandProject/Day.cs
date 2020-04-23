@@ -13,6 +13,7 @@ namespace LemonadeStandProject
         public Weather weather;
         public Recipe recipe;
         public Pitcher pitcher = new Pitcher();
+        public double profit = 0;
 
         public Day()
         {
@@ -32,15 +33,19 @@ namespace LemonadeStandProject
             //Setting the recipe
             //(Last) BuyLogic.  Looping over all of our customers and determining whether they buy or not.
         }
-        public void GoToStore(Store store, Player player)
+        public void GoToStore(Store store, Player player) // this method was checked
         {
             store.SellCups(player);
+            Console.WriteLine("Player has " + player.inventory.cups.Count + " cups");
             store.SellIceCubes(player);
+            Console.WriteLine("Player has " + player.inventory.iceCubes.Count + " iceCubes");
             store.SellLemons(player);
+            Console.WriteLine("Player has " + player.inventory.lemons.Count + " lemons");
             store.SellSugarCubes(player);
+            Console.WriteLine("Player has " + player.inventory.sugarCubes.Count + " sugarCubes");
             //Call all of the store buy methods to get the ingerdiants.
         }
-        public void SetRecipe(Player player)
+        public void SetRecipe(Player player) // method was checked
         {
             //Call the player object's 'recipe' to make the recipe.
             recipe = player.SetRecipe();
@@ -48,6 +53,7 @@ namespace LemonadeStandProject
 
         public void SetupStand(Player player)
         {
+            // BUG HERE 
             pitcher.FillPitcher(recipe, player.inventory);
         }
         public void SellLemonade(Player player)
@@ -63,11 +69,18 @@ namespace LemonadeStandProject
                 }
                 else
                 {
-                    pitcher.FillPitcher(recipe, player.inventory);
+                    if (!pitcher.FillPitcher(recipe, player.inventory))
+                    {
+                        break;
+                    }
                 }
 
             }
-            Console.WriteLine("You sold " + count + " number of cups");
+            Console.WriteLine("You sold " + count + " number of cups and made " + recipe.PricePerCup*count + " today");
+            profit = recipe.PricePerCup * count;
+            player.wallet.addMoney(recipe.PricePerCup * count);
+            Console.WriteLine("New wallet total is " + player.wallet.money);
+
             //Loop over customers ands sell lemonade to them based of the true or false they return.
         }
 
@@ -90,7 +103,7 @@ namespace LemonadeStandProject
                     break;
             }
         }
-        private void CreateCustomers(int numberOfCustomers)
+        private void CreateCustomers(int numberOfCustomers) // checked
         {
             Random rng = new Random();
             for (int i = 0; i < numberOfCustomers; i++)
